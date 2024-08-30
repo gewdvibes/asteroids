@@ -10,15 +10,22 @@ def main():
     # pygame setup
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    clock = pygame.time.Clock()
+    dt = 0
 
     while running:
+        # listen for window close
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
+        # render the game
         screen.fill("black")
 
+        # refresh the screen
         pygame.display.flip()
+
+        dt = clock.tick(120) / 1000
 
     pygame.quit()
 
