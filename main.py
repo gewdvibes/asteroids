@@ -13,22 +13,24 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+    running = True
 
-    while True:
+    while running:
         # listen for window close
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                running = False
 
         # render the game
         screen.fill("black")
 
+        player.draw(screen)
+
         # refresh the screen
         pygame.display.flip()
 
-        dt = clock.tick(120) / 1000
-
-        player.draw(screen)
+        dt = clock.tick(60) / 1000
+    pygame.quit()
 
 if __name__ == "__main__":
     main()
