@@ -21,15 +21,15 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        player.update(dt)
+
         # render the game
         screen.fill("black")
-
         player.draw(screen)
 
         # refresh the screen
         pygame.display.flip()
-
-        dt = clock.tick(60) / 1000
+        dt = clock.tick(120) / 1000
     pygame.quit()
 
 if __name__ == "__main__":
