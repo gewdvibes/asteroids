@@ -19,11 +19,11 @@ def main():
     # creating groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    astroids = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     # adding objects to groups
     Player.containers = (drawable, updatable)
-    Asteroid.containers = (astroids, updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
 
     # Making objects
@@ -40,6 +40,11 @@ def main():
         for updatables in updatable:
             updatables.update(dt)
 
+        # check for collision
+        for asteroid in asteroids:
+            if asteroid.collision_detection(player):
+                running = False
+
         # render the game
         screen.fill("black")
 
@@ -51,6 +56,7 @@ def main():
         pygame.display.flip()
         dt = clock.tick(120) / 1000
     pygame.quit()
+    print("Game over!")
 
 if __name__ == "__main__":
     main()
