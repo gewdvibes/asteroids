@@ -27,7 +27,7 @@ def main():
     Player.containers = (drawable, updatable)
     Asteroid.containers = (asteroids, drawable, updatable)
     AsteroidField.containers = (updatable)
-    Shot.containers = (drawable, updatable)
+    Shot.containers = (shots, drawable, updatable)
 
     # Making objects
     player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2), PLAYER_RADIUS)
@@ -47,6 +47,12 @@ def main():
         for asteroid in asteroids:
             if asteroid.collision_detection(player):
                 running = False
+
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collision_detection(shot):
+                    asteroid.kill()
+                    shot.kill()
 
         # render the game
         screen.fill("black")
