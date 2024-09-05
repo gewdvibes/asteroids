@@ -1,8 +1,9 @@
 import pygame
-from constants import *
-from player import *
+
 from asteroid import *
 from asteroidfield import *
+from constants import *
+from player import *
 from shot import *
 
 def main():
