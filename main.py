@@ -1,19 +1,18 @@
 import pygame
-
-from asteroid import *
-from asteroidfield import *
-from constants import *
-from player import *
-from shot import *
+import asteroid as a
+import asteroidfield as af
+import constants as c
+import player as p
+import shot as s
 
 def main():
     print("Starting asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
+    print(f"Screen width: {c.SCREEN_WIDTH}")
+    print(f"Screen height: {c.SCREEN_HEIGHT}")
 
     # pygame setup
     pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((c.SCREEN_WIDTH, c.SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
     running = True
@@ -25,14 +24,14 @@ def main():
     shots = pygame.sprite.Group()
 
     # adding objects to groups
-    Player.containers = (drawable, updatable)
-    Asteroid.containers = (asteroids, drawable, updatable)
-    AsteroidField.containers = (updatable)
-    Shot.containers = (shots, drawable, updatable)
+    p.Player.containers = (drawable, updatable)
+    a.Asteroid.containers = (asteroids, drawable, updatable)
+    af.AsteroidField.containers = (updatable)
+    s.Shot.containers = (shots, drawable, updatable)
 
     # Making objects
-    player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2), PLAYER_RADIUS)
-    asteroid_field = AsteroidField()
+    player = p.Player((c.SCREEN_WIDTH / 2), (c.SCREEN_HEIGHT / 2), c.PLAYER_RADIUS)
+    asteroid_field = af.AsteroidField()
 
     while running:
         # listen for window close
