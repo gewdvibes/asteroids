@@ -18,20 +18,20 @@ def main():
     running = True
 
     # creating groups
-    updatable = pygame.sprite.Group()
-    drawable = pygame.sprite.Group()
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
 
     # adding objects to groups
-    p.Player.containers = (drawable, updatable)
-    a.Asteroid.containers = (asteroids, drawable, updatable)
-    af.AsteroidField.containers = (updatable)
-    s.Shot.containers = (shots, drawable, updatable)
+    p.Player.containers = (drawables, updatables)
+    a.Asteroid.containers = (asteroids, drawables, updatables)
+    af.AsteroidField.containers = (updatables)
+    s.Shot.containers = (shots, drawables, updatables)
 
     # Making objects
     player = p.Player((c.SCREEN_WIDTH / 2), (c.SCREEN_HEIGHT / 2), c.PLAYER_RADIUS)
-    asteroid_field = af.AsteroidField()
+    af.AsteroidField()
 
     while running:
         # listen for window close
@@ -40,8 +40,8 @@ def main():
                 running = False
 
         # update objects
-        for updatables in updatable:
-            updatables.update(dt)
+        for updatable in updatables:
+            updatable.update(dt)
 
         # check for collision
         for asteroid in asteroids:
@@ -58,8 +58,8 @@ def main():
         screen.fill("black")
 
         # render objects
-        for drawables in drawable:
-            drawables.draw(screen)
+        for drawable in drawables:
+            drawable.draw(screen)
 
         # refresh the screen
         pygame.display.flip()
